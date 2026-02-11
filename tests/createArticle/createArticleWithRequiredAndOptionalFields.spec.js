@@ -34,37 +34,27 @@ test.beforeEach(async ({ page }) => {
   await homePage.assertYourFeedTabIsVisible();
 });
 
-test('Create an article without required fields', async () => {
+test('Creat an article with all required and optional fields', async () => {
+
   await homePage.clickNewArticleLink();
-
-  await createArticlePage.clickPublishArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(
-    'Article title cannot be empty',
-  );
-});
-
-test('Create an article without description field', async () => {
-  await homePage.clickNewArticleLink();
-
-  await createArticlePage.fillArticleTitleField(article.title);
-  await createArticlePage.fillArticleBodyField(article.body);
-  await createArticlePage.fillArticleTagField(article.tag);
-
-  await createArticlePage.clickPublishArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(
-    'Article description cannot be empty',
-  );
-})
-
-test('Create an article without body(text) field', async () => {
-  await homePage.clickNewArticleLink();
-
   await createArticlePage.fillArticleTitleField(article.title);
   await createArticlePage.fillArticleDescriptionField(article.description);
+  await createArticlePage.fillArticleBodyField(article.body);
   await createArticlePage.fillArticleTagField(article.tag);
-
+  
   await createArticlePage.clickPublishArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(
-    'Article body cannot be empty',
-  );
-})
+
+  await createArticlePage.assertArticleTitleIsVisible();
+});
+
+test('Creat an article with all required fields', async () => {
+
+  await homePage.clickNewArticleLink();
+  await createArticlePage.fillArticleTitleField(article.title);
+  await createArticlePage.fillArticleDescriptionField(article.description);
+  await createArticlePage.fillArticleBodyField(article.body);
+  
+  await createArticlePage.clickPublishArticleButton();
+
+  await createArticlePage.assertArticleTitleIsVisible();
+});
