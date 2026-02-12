@@ -34,7 +34,7 @@ test.beforeEach(async ({ page }) => {
   await homePage.assertYourFeedTabIsVisible();
 });
 
-test('Creat an article with all required and optional fields', async () => {
+test('Create an article with all required and optional fields', async () => {
 
   await homePage.clickNewArticleLink();
   await createArticlePage.fillArticleTitleField(article.title);
@@ -44,10 +44,10 @@ test('Creat an article with all required and optional fields', async () => {
   
   await createArticlePage.clickPublishArticleButton();
 
-  await createArticlePage.assertArticleTitleIsVisible();
+  await createArticlePage.assertArticleTitleIsVisible(article.title);
 });
 
-test('Creat an article with all required fields', async () => {
+test(`Create an article without 'tags' field`, async () => {
 
   await homePage.clickNewArticleLink();
   await createArticlePage.fillArticleTitleField(article.title);
@@ -56,5 +56,5 @@ test('Creat an article with all required fields', async () => {
   
   await createArticlePage.clickPublishArticleButton();
 
-  await createArticlePage.assertArticleTitleIsVisible();
+  await createArticlePage.assertArticleTitleIsVisible(article.title);
 });
