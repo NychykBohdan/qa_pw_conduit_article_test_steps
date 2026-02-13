@@ -12,6 +12,7 @@ export class CreateArticlePage {
     this.bodyField = page.getByPlaceholder(`Write your article (in markdown)`);
     this.tagField = page.getByPlaceholder('Enter tags');
     this.articleTitle = page.locator('h1');
+    this.tagList = page.locator('ul.tag-list');
   }
 
   async clickPublishArticleButton() {
@@ -61,6 +62,12 @@ export class CreateArticlePage {
   async assertArticleTitleIsVisible(title) {
     await test.step(`Assert Article title ${title} is Visible`, async () => {
       await expect(this.articleTitle.filter({ hasText: title })).toBeVisible();
+    })
+  }
+
+  async assertTagListIsHidden() {
+    await test.step(`Assert tag list is Hidden`, async () => {
+      await expect(this.tagList).toBeHidden();
     })
   }
 }

@@ -47,14 +47,3 @@ test('Create an article with all required and optional fields', async () => {
   await createArticlePage.assertArticleTitleIsVisible(article.title);
 });
 
-test(`Create an article without 'tags' field`, async () => {
-
-  await homePage.clickNewArticleLink();
-  await createArticlePage.fillArticleTitleField(article.title);
-  await createArticlePage.fillArticleDescriptionField(article.description);
-  await createArticlePage.fillArticleBodyField(article.body);
-  
-  await createArticlePage.clickPublishArticleButton();
-
-  await createArticlePage.assertArticleTitleIsVisible(article.title);
-});

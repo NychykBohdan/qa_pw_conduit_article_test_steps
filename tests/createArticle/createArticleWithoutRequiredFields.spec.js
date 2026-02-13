@@ -68,3 +68,19 @@ test('Create an article without body(text) field', async () => {
     'Article body cannot be empty',
   );
 })
+
+test(`Create an article without filling 'tags' field`, async () => {
+
+  await homePage.clickNewArticleLink();
+  await createArticlePage.fillArticleTitleField(article.title);
+  await createArticlePage.fillArticleDescriptionField(article.description);
+  await createArticlePage.fillArticleBodyField(article.body);
+  
+  await createArticlePage.clickPublishArticleButton();
+
+  await createArticlePage.assertArticleTitleIsVisible(article.title);
+  await createArticlePage.assertTagListIsHidden();
+
+});
+
+
